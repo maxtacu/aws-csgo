@@ -17,7 +17,7 @@ lgsm_dependencies:
   - netcat 
   - lib32gcc1 
   - lib32stdc++6 
-  # - steamcmd
+  - steamcmd
 
 lgsm_version: 20.5.1
 lgsm_user: "csgoserver"

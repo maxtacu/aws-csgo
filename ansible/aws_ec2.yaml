@@ -7,4 +7,4 @@ keyed_groups:
     prefix: tag_Name_
     separator: ""
 compose:
-  ansible_host: private_ip_address
+  ansible_host: public_ip_address

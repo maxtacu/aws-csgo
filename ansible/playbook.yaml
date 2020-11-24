@@ -11,6 +11,12 @@
   - name: Install LGSM dependencies (update package list)
     apt:
       update_cache: yes
+  - name: SteamCMD (licence agreement)
+    shell: 
+      cmd: echo steam steam/question select "I AGREE" | sudo debconf-set-selections
+  - name: SteamCMD (licence note)
+    shell: 
+      cmd: echo steam steam/license note '' | sudo debconf-set-selections
   - name: Install LGSM dependencies
     apt:
       name: "{{ item }}"
