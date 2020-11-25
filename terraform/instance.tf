@@ -30,7 +30,7 @@ resource "aws_instance" "csgo_server" {
 }
 
 resource "aws_key_pair" "deployer" {
-  key_name   = "maxim.tacu"
+  key_name   = "myawskey"
   public_key = file(var.pub_key_filepath)
 }
 

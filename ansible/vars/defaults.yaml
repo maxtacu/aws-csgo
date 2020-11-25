@@ -15,16 +15,11 @@ lgsm_dependencies:
   - jq 
   - tmux 
   - netcat 
+  - net-tools
   - lib32gcc1 
   - lib32stdc++6 
   - steamcmd
 
-lgsm_version: 20.5.1
-lgsm_user: "csgoserver"
-lgsm_group: "csgoserver"
+lgsm_user: csgoserver
+lgsm_group: csgoserver
 
-csgo_gslt_token: "steam_token"
-csgo_defaultmap: de_dust2
-csgo_maxplayers: 14
-csgo_tickrate: 128
-csgo_rcon_password: "supersecret"

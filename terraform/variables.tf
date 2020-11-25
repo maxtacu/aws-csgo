@@ -16,3 +16,7 @@ variable "tags" {
 variable "pub_key_filepath" {
   default = "~/.ssh/id_rsa.pub"
 }
+
+variable "vpc_cidr_block" {
+  default = "172.16.0.0/24"
+}
