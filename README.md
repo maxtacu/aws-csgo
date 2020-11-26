@@ -10,3 +10,7 @@ terraform apply
 ```
 ansible-playbook -i aws_ec2.yaml playbook.yaml
 ```
+6. Connect to your server using public address and passwords from `files/server.cfg`
+```
+server_ip_address:27015; password serverpassword; rcon_password rconpassword
+```

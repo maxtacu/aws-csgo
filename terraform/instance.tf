@@ -17,7 +17,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "csgo_server" {
   ami           = data.aws_ami.ubuntu.id
   key_name      = aws_key_pair.deployer.key_name
-  instance_type = "t3.large"
+  instance_type = var.instance_type
   subnet_id = aws_subnet.csgo_subnet.id
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.csgo_server.id]

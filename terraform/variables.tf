@@ -20,3 +20,7 @@ variable "pub_key_filepath" {
 variable "vpc_cidr_block" {
   default = "172.16.0.0/24"
 }
+
+variable "instance_type" {
+  default = "m5.xlarge"
+}

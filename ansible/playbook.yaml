@@ -9,23 +9,23 @@
     command: dpkg --add-architecture i386
     changed_when: false
   
-  - name: "Check if SteamCMD is installed"
-    package_facts:
-      manager: "auto"
-
   - name: Install LGSM dependencies (update package list)
     apt:
       update_cache: yes
+  
+  - name: "Check if SteamCMD is installed"
+    package_facts:
+      manager: apt
 
   - name: SteamCMD (licence agreement)
     shell: 
       cmd: echo steam steam/question select "I AGREE" | sudo debconf-set-selections
-    when: "'steamcmd' not in ansible_facts.packages"
+    when: "'steamcmd:i386' not in ansible_facts.packages"
 
   - name: SteamCMD (licence note)
     shell: 
       cmd: echo steam steam/license note '' | sudo debconf-set-selections
-    when: "'steamcmd' not in ansible_facts.packages"
+    when: "'steamcmd:i386' not in ansible_facts.packages"
 
   - name: Install LGSM dependencies
     apt:
@@ -75,6 +75,7 @@
       executable: /bin/bash
       chdir: "/home/{{ lgsm_user }}"
     become_user: csgoserver
+    when: not csgoserver_file.stat.exists
 
   - name: Copy server configuration
     copy:
@@ -82,6 +83,7 @@
       dest: /home/csgoserver/serverfiles/csgo/cfg/csgoserver.cfg
       owner: csgoserver
       group: csgoserver
+    register: servercfg
 
   - name: Copy game configuration
     copy:
@@ -89,6 +91,7 @@
       dest: /home/csgoserver/lgsm/config-lgsm/csgoserver/csgoserver.cfg
       owner: csgoserver
       group: csgoserver
+    register: csgocfg
 
   - name: Restart the server
     become_user: csgoserver
@@ -96,3 +99,4 @@
     args:
       executable: /bin/bash
       chdir: "/home/{{ lgsm_user }}"
+    when: servercfg.changed or csgocfg.changed
