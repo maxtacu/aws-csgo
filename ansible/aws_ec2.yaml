@@ -1,6 +1,6 @@
 plugin: amazon.aws.aws_ec2
 regions:
-  - eu-central-1
+  - eu-west-2
 keyed_groups:
   # add hosts to tag_Name_value groups for each aws_ec2 host's tags.Name variable
   - key: tags.Name

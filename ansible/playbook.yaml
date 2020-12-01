@@ -5,13 +5,13 @@
   vars_files:
     - ./vars/defaults.yaml
   tasks:
-  - name: Install LGSM dependencies (add i386 arch)
+  - name: add i386 arch
     command: dpkg --add-architecture i386
-    changed_when: false
   
-  - name: Install LGSM dependencies (update package list)
+  - name: update package list
     apt:
       update_cache: yes
+      cache_valid_time: 3600
   
   - name: "Check if SteamCMD is installed"
     package_facts:
@@ -70,7 +70,7 @@
     when: not csgoserver_file.stat.exists
 
   - name: Installing the csgoserver(this step might take 30-40min)
-    shell: ~/csgoserver auto-install
+    shell: ~/csgoserver auto-install > csgoinstall.log
     args:
       executable: /bin/bash
       chdir: "/home/{{ lgsm_user }}"
