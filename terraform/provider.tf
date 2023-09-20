@@ -1,5 +1,5 @@
 terraform {
-  required_version = "0.13.5"
+  required_version = "0.15.5"
 }
 
 provider "aws" {
